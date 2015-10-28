@@ -39,12 +39,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vag-PU-Bt3">
+                                <rect key="frame" x="223" y="509" width="155" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Signup to Udacity"/>
+                                <connections>
+                                    <segue destination="9h9-WF-OYU" kind="presentation" id="inH-6X-Ips"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g4f-du-deU" firstAttribute="centerX" secondItem="YLe-2V-HXm" secondAttribute="centerX" id="Ibx-UE-HmP"/>
                             <constraint firstItem="rVX-gf-vhH" firstAttribute="centerX" secondItem="YLe-2V-HXm" secondAttribute="centerX" id="Xb0-AP-i4Z"/>
+                            <constraint firstItem="Vag-PU-Bt3" firstAttribute="centerX" secondItem="YLe-2V-HXm" secondAttribute="centerX" id="lvM-78-CeS"/>
                             <constraint firstItem="rVX-gf-vhH" firstAttribute="centerY" secondItem="YLe-2V-HXm" secondAttribute="centerY" id="wRS-hF-us0"/>
                             <constraint firstItem="JfM-dw-k58" firstAttribute="centerX" secondItem="YLe-2V-HXm" secondAttribute="centerX" id="wgo-m7-0mo"/>
                         </constraints>
@@ -61,6 +70,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGM-Yd-XKF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1040" y="184"/>
+        </scene>
+        <!--Signup Page Controller-->
+        <scene sceneID="gzi-VE-7jk">
+            <objects>
+                <viewController id="9h9-WF-OYU" customClass="SignupPageController" customModule="OnTheMapApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y7i-47-gzU"/>
+                        <viewControllerLayoutGuide type="bottom" id="4rH-vo-psl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r5E-G3-7qm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-qc-3bo">
+                                <rect key="frame" x="252" y="550" width="80" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Go Back"/>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0B-3Y-oYW">
+                                <rect key="frame" x="0.0" y="28" width="600" height="472"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4AF-qc-3bo" firstAttribute="centerX" secondItem="r5E-G3-7qm" secondAttribute="centerX" id="0wq-5N-vDG"/>
+                            <constraint firstItem="g0B-3Y-oYW" firstAttribute="top" secondItem="Y7i-47-gzU" secondAttribute="bottom" constant="8" id="4j1-in-N5g"/>
+                            <constraint firstItem="g0B-3Y-oYW" firstAttribute="centerX" secondItem="r5E-G3-7qm" secondAttribute="centerX" id="9AK-Sv-vhg"/>
+                            <constraint firstItem="4rH-vo-psl" firstAttribute="top" secondItem="4AF-qc-3bo" secondAttribute="bottom" constant="20" id="PxQ-5r-XBK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g0B-3Y-oYW" secondAttribute="trailing" constant="-20" id="jef-Za-Jmj"/>
+                            <constraint firstItem="4AF-qc-3bo" firstAttribute="top" secondItem="g0B-3Y-oYW" secondAttribute="bottom" constant="50" id="tnr-di-ZmN"/>
+                            <constraint firstItem="g0B-3Y-oYW" firstAttribute="leading" secondItem="r5E-G3-7qm" secondAttribute="leadingMargin" constant="-20" id="wTB-5R-kvz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signupWebview" destination="g0B-3Y-oYW" id="i1C-fK-4Lx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N96-45-BSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1040" y="895"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="ifT-aG-9Bt">

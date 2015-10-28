@@ -21,6 +21,7 @@
 		36322DA21BE0D26C002106AF /* MapAppConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA11BE0D26C002106AF /* MapAppConvenience.swift */; };
 		36322DA41BE0D27A002106AF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA31BE0D27A002106AF /* MapViewController.swift */; };
 		36322DA61BE0D2BA002106AF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA51BE0D2BA002106AF /* TableViewController.swift */; };
+		36322DAA1BE0D6EA002106AF /* SignupPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA91BE0D6EA002106AF /* SignupPageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		36322DA11BE0D26C002106AF /* MapAppConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAppConvenience.swift; sourceTree = "<group>"; };
 		36322DA31BE0D27A002106AF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		36322DA51BE0D2BA002106AF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		36322DA91BE0D6EA002106AF /* SignupPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		36322DA81BE0D2EC002106AF /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				36322DA91BE0D6EA002106AF /* SignupPageController.swift */,
 				36322D9B1BE0D238002106AF /* LoginViewController.swift */,
 				36322DA31BE0D27A002106AF /* MapViewController.swift */,
 				36322D991BE0D224002106AF /* InformationViewController.swift */,
@@ -297,6 +300,7 @@
 				36322DA21BE0D26C002106AF /* MapAppConvenience.swift in Sources */,
 				36322D6E1BE0CDC1002106AF /* ViewController.swift in Sources */,
 				36322DA01BE0D258002106AF /* MapAppConstants.swift in Sources */,
+				36322DAA1BE0D6EA002106AF /* SignupPageController.swift in Sources */,
 				36322D9E1BE0D249002106AF /* MapAppClient.swift in Sources */,
 				36322D6C1BE0CDC1002106AF /* AppDelegate.swift in Sources */,
 				36322D9A1BE0D224002106AF /* InformationViewController.swift in Sources */,
