@@ -29,10 +29,6 @@ class LoginViewController:UIViewController{
             
             if let result = result{
                 
-                print(result)
-                
-                
-                
                 let resultDic = result["account"]
                 
                 if let resultDic = resultDic {

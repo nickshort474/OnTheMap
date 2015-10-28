@@ -133,11 +133,12 @@ extension MapAppClient {
     
     
     
-    func getStudentLocation(){
+    func getStudentLocation(completionHandler:(result: AnyObject!, error: NSError?) -> Void){
         
         
         let parameters = [
-            "url":Constants.udacityURL
+            "url":Constants.parseURL,
+            "method":"GET"
         ]
         
         let requestHeaderValues = [
@@ -153,7 +154,10 @@ extension MapAppClient {
                     print("error, code: \(error)")
                     
                 }else{
-                    print(result)
+                    if let result = result{
+                        
+                        completionHandler(result:result,error:error)
+                    }
                 }
         }
         

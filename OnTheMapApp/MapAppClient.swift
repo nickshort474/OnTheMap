@@ -59,12 +59,20 @@ class MapAppClient:NSObject {
                 
                 // TODO: deal with first 5 characters of udacity response but not parse
                 
-                let newData = data?.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                
-                MapAppClient.parseJSON(newData!){
-                    (result,error) in
-                    print(error)
-                    completionHandler(result:result,error:error)
+                if(parameters["url"] as! String == "https://www.udacity.com/api/session"){
+                    
+                    let newData = data?.subdataWithRange(NSMakeRange(5, data!.length - 5))
+                    MapAppClient.parseJSON(newData!){
+                        (result,error) in
+                        
+                        completionHandler(result:result,error:error)
+                    }
+                }else{
+                    MapAppClient.parseJSON(data!){
+                        (result,error) in
+                        
+                        completionHandler(result:result,error:error)
+                    }
                 }
                 //print()
                 
