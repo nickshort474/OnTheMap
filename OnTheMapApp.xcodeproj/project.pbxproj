@@ -22,6 +22,7 @@
 		36322DA41BE0D27A002106AF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA31BE0D27A002106AF /* MapViewController.swift */; };
 		36322DA61BE0D2BA002106AF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA51BE0D2BA002106AF /* TableViewController.swift */; };
 		36322DAA1BE0D6EA002106AF /* SignupPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36322DA91BE0D6EA002106AF /* SignupPageController.swift */; };
+		36B2C30E1BE125FD00FEC49B /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2C30D1BE125FD00FEC49B /* StudentLocations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		36322DA31BE0D27A002106AF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		36322DA51BE0D2BA002106AF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		36322DA91BE0D6EA002106AF /* SignupPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPageController.swift; sourceTree = "<group>"; };
+		36B2C30D1BE125FD00FEC49B /* StudentLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				36322D9D1BE0D249002106AF /* MapAppClient.swift */,
 				36322D9F1BE0D258002106AF /* MapAppConstants.swift */,
+				36B2C30D1BE125FD00FEC49B /* StudentLocations.swift */,
 				36322DA11BE0D26C002106AF /* MapAppConvenience.swift */,
 			);
 			name = Model;
@@ -300,6 +303,7 @@
 				36322DA21BE0D26C002106AF /* MapAppConvenience.swift in Sources */,
 				36322D6E1BE0CDC1002106AF /* ViewController.swift in Sources */,
 				36322DA01BE0D258002106AF /* MapAppConstants.swift in Sources */,
+				36B2C30E1BE125FD00FEC49B /* StudentLocations.swift in Sources */,
 				36322DAA1BE0D6EA002106AF /* SignupPageController.swift in Sources */,
 				36322D9E1BE0D249002106AF /* MapAppClient.swift in Sources */,
 				36322D6C1BE0CDC1002106AF /* AppDelegate.swift in Sources */,

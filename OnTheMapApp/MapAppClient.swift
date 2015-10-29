@@ -13,6 +13,11 @@ class MapAppClient:NSObject {
     
     let session = NSURLSession.sharedSession()
     
+    
+    
+    var studentLocations:[StudentLocations] = [StudentLocations]()
+    
+    
     func repeatableTasks(parameters: [String : AnyObject],requestHeaderValues: [String : AnyObject],requestBodyValues: [String : NSData]?=nil,completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask  {
         
         // TODO: send url parametres to escaped parameters
