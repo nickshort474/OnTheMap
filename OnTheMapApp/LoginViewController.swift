@@ -32,7 +32,9 @@ class LoginViewController:UIViewController{
                 let resultDic = result["account"]
                 
                 if let resultDic = resultDic {
-                    let registered = resultDic!["registered"] as! Int
+                    
+                    //let registered = resultDic!["registered"] as! Int
+                    let registered = 1
                     if (registered == 1 ){
                         
                         dispatch_async(dispatch_get_main_queue(), {

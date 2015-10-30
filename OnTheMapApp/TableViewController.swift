@@ -15,23 +15,15 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var tableView: UITableView!
     
     var studentLocations:[StudentLocations] = [StudentLocations]()
-    
+    var count:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //self.tableView!.registerClass(UITableViewCell.self,forCellReuseIdentifier: "cell")
-        
         
         studentLocations = MapAppClient.sharedInstance().studentLocations
-        print(studentLocations)
-        
-        //MapAppClient.sharedInstance().getStudentLocation(){
-            //(result,error) in
-            
-        //}
-      
-        
+        count = studentLocations.count
+       
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,25 +32,26 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(tableView:UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 1
+        
+        return count
     }
     
     
      func tableView(tableView:UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        //let cellID = tableCell
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel!.text = "hello"
-        
-        print("cell presenting?")
-        
+       
+        let students = studentLocations[indexPath.row]
+        cell.textLabel!.text = "\(students.firstName) \(students.lastName)"
+        let image = UIImage(named:"Pin")
+        cell.imageView!.image = image
         return cell
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("row selected")
+        //print("row selected")
     }
     
     

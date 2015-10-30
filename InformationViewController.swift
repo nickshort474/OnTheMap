@@ -13,7 +13,7 @@ class InformationViewController:UIViewController{
     
     
     @IBAction func dismissInformation(sender: UIButton) {
-        //self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
         //MapAppClient.sharedInstance().getStudentLocation()
         
     }

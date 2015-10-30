@@ -6,6 +6,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="wID-ux-jNg">
@@ -22,6 +27,7 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVX-gf-vhH">
                                 <rect key="frame" x="277" y="285" width="46" height="30"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginToUdacity:" destination="HlE-HF-lyw" eventType="touchUpInside" id="co1-RQ-hs6"/>
@@ -133,6 +139,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="36" id="yHN-bb-PVF">
                                         <rect key="frame" x="0.0" y="92" width="600" height="36"/>
@@ -160,7 +167,7 @@
                             <constraint firstItem="d2O-UR-0Ry" firstAttribute="top" secondItem="Z16-wn-yeA" secondAttribute="bottom" id="puH-j7-uSk"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="VAe-5L-wKs"/>
+                    <tabBarItem key="tabBarItem" title="Item 2" image="List" id="VAe-5L-wKs"/>
                     <connections>
                         <outlet property="view" destination="Z16-wn-yeA" id="nVt-FM-pYe"/>
                     </connections>
@@ -195,7 +202,7 @@
                             <constraint firstItem="e6Z-kK-WFe" firstAttribute="leading" secondItem="j2E-Nr-VhG" secondAttribute="leadingMargin" constant="-20" id="lzW-Kv-EaY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="d3S-Ar-4Ao"/>
+                    <tabBarItem key="tabBarItem" title="Item 1" image="Map" id="d3S-Ar-4Ao"/>
                     <connections>
                         <outlet property="MapView" destination="e6Z-kK-WFe" id="FBH-1u-G20"/>
                     </connections>
@@ -229,7 +236,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Z93-CG-e6E"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Refresh" id="zkk-jY-ESQ"/>
-                            <barButtonItem title="Pin" id="KxV-vo-5bp">
+                            <barButtonItem image="Pin" id="KxV-vo-5bp">
                                 <connections>
                                     <segue destination="nog-0b-soC" kind="presentation" id="qKa-Qd-hdL"/>
                                 </connections>
@@ -285,4 +292,9 @@
             <point key="canvasLocation" x="295" y="918"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="List" width="32" height="32"/>
+        <image name="Map" width="32" height="32"/>
+        <image name="Pin" width="32" height="32"/>
+    </resources>
 </document>
