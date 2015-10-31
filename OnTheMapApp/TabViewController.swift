@@ -26,7 +26,9 @@ class TabViewController:UITabBarController{
                 StudentLocations.createStudentArray(results)
                 
                 // refresh map View / list view
-                print(self.viewControllers![0])
+               var navController = self.parentViewController
+                print(navController)
+                
             }
         
         }

@@ -24,6 +24,10 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
         studentLocations = MapAppClient.sharedInstance().studentLocations
         count = studentLocations.count
        
+        
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,4 +69,7 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.selected = true
     }
+    
+    
+    
 }

@@ -76,6 +76,12 @@ extension MapAppClient {
         
     }
     
+    func refreshViews(){
+        
+        
+    }
+    
+    
     func logoutSession(){
         
         let request = NSMutableURLRequest(URL:NSURL(string:"https://www.udacity.com/api/session")!)

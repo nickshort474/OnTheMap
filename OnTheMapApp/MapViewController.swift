@@ -20,6 +20,9 @@ class MapViewController:UIViewController{
         // Do any additional setup after loading the view, typically from a nib.
         
         //print(self.parentViewController?.navigationItem.rightBarButtonItems![1])
+        self.parentViewController!.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshData"),
+            UIBarButtonItem(image: UIImage(named:"Pin"), style: .Plain, target: self, action: "postNewData")]
+        
         
         
         var annotations = [MKPointAnnotation]()
@@ -64,10 +67,7 @@ class MapViewController:UIViewController{
     
     
     
-    func populateMap(){
-        
-        print("populating")
-    }
+   
     
     
     
@@ -102,7 +102,14 @@ class MapViewController:UIViewController{
     }
         
         
-               
+    func refreshData(){
+        print("refreshing")
+    }
+    
+    
+    func postNewData(){
+        print("posting new data")
+    }
     
     
     override func didReceiveMemoryWarning() {
