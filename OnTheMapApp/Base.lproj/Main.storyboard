@@ -50,7 +50,7 @@
                                 <animations/>
                                 <state key="normal" title="Signup to Udacity"/>
                                 <connections>
-                                    <segue destination="9h9-WF-OYU" kind="presentation" id="inH-6X-Ips"/>
+                                    <action selector="signUpToUdacity:" destination="HlE-HF-lyw" eventType="touchUpInside" id="JdQ-2F-0gS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -77,52 +77,6 @@
             </objects>
             <point key="canvasLocation" x="-1040" y="184"/>
         </scene>
-        <!--Signup Page Controller-->
-        <scene sceneID="gzi-VE-7jk">
-            <objects>
-                <viewController id="9h9-WF-OYU" customClass="SignupPageController" customModule="OnTheMapApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Y7i-47-gzU"/>
-                        <viewControllerLayoutGuide type="bottom" id="4rH-vo-psl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="r5E-G3-7qm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-qc-3bo">
-                                <rect key="frame" x="252" y="550" width="80" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Go Back"/>
-                                <connections>
-                                    <action selector="goBackToSignin:" destination="9h9-WF-OYU" eventType="touchUpInside" id="f3H-56-cau"/>
-                                </connections>
-                            </button>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0B-3Y-oYW">
-                                <rect key="frame" x="0.0" y="28" width="600" height="472"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4AF-qc-3bo" firstAttribute="centerX" secondItem="r5E-G3-7qm" secondAttribute="centerX" id="0wq-5N-vDG"/>
-                            <constraint firstItem="g0B-3Y-oYW" firstAttribute="top" secondItem="Y7i-47-gzU" secondAttribute="bottom" constant="8" id="4j1-in-N5g"/>
-                            <constraint firstItem="g0B-3Y-oYW" firstAttribute="centerX" secondItem="r5E-G3-7qm" secondAttribute="centerX" id="9AK-Sv-vhg"/>
-                            <constraint firstItem="4rH-vo-psl" firstAttribute="top" secondItem="4AF-qc-3bo" secondAttribute="bottom" constant="20" id="PxQ-5r-XBK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="g0B-3Y-oYW" secondAttribute="trailing" constant="-20" id="jef-Za-Jmj"/>
-                            <constraint firstItem="4AF-qc-3bo" firstAttribute="top" secondItem="g0B-3Y-oYW" secondAttribute="bottom" constant="50" id="tnr-di-ZmN"/>
-                            <constraint firstItem="g0B-3Y-oYW" firstAttribute="leading" secondItem="r5E-G3-7qm" secondAttribute="leadingMargin" constant="-20" id="wTB-5R-kvz"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="signupWebview" destination="g0B-3Y-oYW" id="i1C-fK-4Lx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N96-45-BSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1040" y="895"/>
-        </scene>
         <!--Item 2-->
         <scene sceneID="ifT-aG-9Bt">
             <objects>
@@ -139,7 +93,9 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="36" id="yHN-bb-PVF">
                                         <rect key="frame" x="0.0" y="92" width="600" height="36"/>
@@ -203,6 +159,8 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" image="Map" id="d3S-Ar-4Ao"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="MapView" destination="e6Z-kK-WFe" id="FBH-1u-G20"/>
                     </connections>
@@ -231,11 +189,15 @@
         <!--On The Map-->
         <scene sceneID="rx2-NC-pwU">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" title="On The Map" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eUe-t5-8Lz" sceneMemberID="viewController">
+                <tabBarController title="On The Map" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eUe-t5-8Lz" customClass="TabViewController" customModule="OnTheMapApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="8RW-lb-ysf">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Z93-CG-e6E"/>
                         <rightBarButtonItems>
-                            <barButtonItem title="Refresh" id="zkk-jY-ESQ"/>
+                            <barButtonItem title="Refresh" id="zkk-jY-ESQ">
+                                <connections>
+                                    <action selector="refreshList:" destination="eUe-t5-8Lz" id="APm-Sn-YGe"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="Pin" id="KxV-vo-5bp">
                                 <connections>
                                     <segue destination="nog-0b-soC" kind="presentation" id="qKa-Qd-hdL"/>
@@ -256,7 +218,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwl-aU-NbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="295" y="184"/>
+            <point key="canvasLocation" x="343" y="110"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="pHX-b0-CFx">

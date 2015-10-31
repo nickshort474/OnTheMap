@@ -32,18 +32,20 @@ struct StudentLocations{
     
    static func createStudentArray(results:[[String:AnyObject]]){
         
-        //var studentInfo = [StudentLocations]()
+        // empty studentLocation array ready to put fresh results in
+        MapAppClient.sharedInstance().studentLocations.removeAll()
     
         for value in results{
-            //studentInfo.append(StudentLocations(value: value))
+            
+            // add new results to array
             MapAppClient.sharedInstance().studentLocations.append(StudentLocations(value:value))
+            
         }
         
-        //return studentInfo
+    
     }
     
-    
-   //  -> [StudentLocations]
+  
     
     
 }

@@ -24,6 +24,7 @@ class LoginViewController:UIViewController{
     
     
     @IBAction func loginToUdacity(sender: UIButton) {
+        
         MapAppClient.sharedInstance().loginToUdacity(emailTextField.text!, password: passwordTextField.text!){
             (result, error) in
             
@@ -66,6 +67,14 @@ class LoginViewController:UIViewController{
         
     }
     
+    
+    @IBAction func signUpToUdacity(sender: UIButton) {
+        
+        let linkToOpen = "https://www.udacity.com/account/auth#!/signup"
+        let safari = UIApplication.sharedApplication()
+        safari.openURL(NSURL(string:linkToOpen)!)
+    
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

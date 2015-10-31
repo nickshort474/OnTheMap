@@ -19,6 +19,8 @@ class MapViewController:UIViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //print(self.parentViewController?.navigationItem.rightBarButtonItems![1])
+        
         
         var annotations = [MKPointAnnotation]()
         
@@ -59,6 +61,16 @@ class MapViewController:UIViewController{
             self.MapView.addAnnotations(annotations)
         }
     }
+    
+    
+    
+    func populateMap(){
+        
+        print("populating")
+    }
+    
+    
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
             
         let reuseId = "pin"
@@ -80,6 +92,7 @@ class MapViewController:UIViewController{
         
         // This delegate method is implemented to respond to taps. It opens the system browser
         // to the URL specified in the annotationViews subtitle property.
+    
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
         if control == annotationView.rightCalloutAccessoryView {

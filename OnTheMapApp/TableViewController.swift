@@ -33,11 +33,15 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(tableView:UITableView, numberOfRowsInSection section: Int) -> Int{
         
+        
         return count
     }
     
     
      func tableView(tableView:UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        
+        
+        tableView.backgroundColor = UIColor.whiteColor()
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
@@ -51,8 +55,14 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //print("row selected")
+        
+        let linkToOpen = studentLocations[indexPath.row].mediaURL
+        let safari = UIApplication.sharedApplication()
+        
+        safari.openURL(NSURL(string:linkToOpen)!)
     }
     
-    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.selected = true
+    }
 }
