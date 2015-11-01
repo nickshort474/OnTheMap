@@ -12,7 +12,7 @@ import UIKit
 class TabViewController:UITabBarController{
     
     
-    @IBAction func refreshList(sender: UIBarButtonItem) {
+    /*@IBAction func refreshList(sender: UIBarButtonItem) {
         
         MapAppClient.sharedInstance().getStudentLocation(){
         (result,error) in
@@ -25,13 +25,11 @@ class TabViewController:UITabBarController{
                 // save new data in shared studentLocations Array
                 StudentLocations.createStudentArray(results)
                 
-                // refresh map View / list view
-               var navController = self.parentViewController
-                print(navController)
+               
                 
             }
         
         }
-    }
+    }*/
     
 }

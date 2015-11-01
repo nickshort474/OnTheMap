@@ -14,9 +14,6 @@ extension MapAppClient {
     
     func loginToUdacity(email:String,password:String, completionHandler:(result: AnyObject!, error: NSError?) -> Void){
         
-        //var loginError:NSError?
-        //var loginResult:AnyObject?
-        
         
         let parameters = [
             "url":Constants.udacityURL,
@@ -34,18 +31,13 @@ extension MapAppClient {
         
         
         
-        // TODO:  USE: let newData = data?.subdataWithRange(NSMakeRange(5,data!.length - 5))
-        // AND: NSString(data: newData!, encoding:NSUTF8StringEncoding)
-        // to process data
-        // OR???  JSON FUNCTION taken from movieManager App
-        
         repeatableTasks(parameters,requestHeaderValues: requestHeaderValues,requestBodyValues:requestBodyValues){
             (result, error) in
             
             if let error = error{
                 
                 print("error, code: \(error)")
-                //loginError = error
+                
                 
             }else{
                 if let result = result{
@@ -54,30 +46,7 @@ extension MapAppClient {
                 }
             }
         }
-        
-        
-        
-        //request.HTTPMethod = "POST"
-        //request.addValue("application/json",forHTTPHeaderField:"Accept")
-        //request.addValue("application/json", forHTTPHeaderField:"Content-type")
-        //request.HTTPBody = "{\"udacity\":{\"username\":\"nickshorty2010@yahoo.co.uk\", \"password\":\"colorado\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-        
-        //let session = NSURLSession.sharedSession()
-        //let task = session.dataTaskWithRequest(request){
-        //data, response,error in
-        //if let error = error{
-        //print(error)
-        //}else{
-        // let newData = data?.subdataWithRange(NSMakeRange(5,data!.length - 5))
-        //print(NSString(data: newData!, encoding:NSUTF8StringEncoding))
-        // }
-        //}
-        //task.resume()
-        
-    }
-    
-    func refreshViews(){
-        
+      
         
     }
     
@@ -115,6 +84,7 @@ extension MapAppClient {
         
         
     }
+    
     
     func getPublicUserData(){
         
@@ -167,7 +137,7 @@ extension MapAppClient {
                 }
         }
         
-        // use returned info
+       
         
     }
     
@@ -204,33 +174,4 @@ extension MapAppClient {
         
     }
     
-    
-    func sortMapStuff(){
-        
-        // do stuff
-        
-        // repeatableTasks(method, parameters)
-        
-        // use returned info
-        
-        // do some stuff
-        
-    }
-    
-    
-    
-    func populateTable(){
-        // do stufff
-        
-        // do stuff
-        
-        // repeatableTasks(method, parameters)
-        
-        // use returned info
-    }
-    
-    
-    
-    
-    
-}
+   }
