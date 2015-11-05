@@ -7,9 +7,7 @@
 //
 
 import Foundation
-
-
-
+import UIKit
 
 struct StudentLocations{
     
@@ -21,32 +19,33 @@ struct StudentLocations{
     
     
     init(value:[String:AnyObject]){
-       
-       firstName = value["firstName"] as! String
-       lastName = value["lastName"] as! String
-       mediaURL = value["mediaURL"] as! String
-       latitude = value["latitude"] as! Double
-       longitude = value["longitude"] as! Double
+        
+        firstName = value["firstName"] as! String
+        lastName = value["lastName"] as! String
+        mediaURL = value["mediaURL"] as! String
+        latitude = value["latitude"] as! Double
+        longitude = value["longitude"] as! Double
         
     }
     
-   static func createStudentArray(results:[[String:AnyObject]]){
+    static func createStudentArray(results:[[String:AnyObject]]){
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
         
         // empty studentLocation array ready to put fresh results in
-        MapAppClient.sharedInstance().studentLocations.removeAll()
-    
+        
+        appDelegate.studentLocations.removeAll()
+        
         for value in results{
             
             // add new results to array
-            MapAppClient.sharedInstance().studentLocations.append(StudentLocations(value:value))
+            appDelegate.studentLocations.append(StudentLocations(value:value))
             
         }
         
-    
+        
     }
-    
-  
     
     
 }
-

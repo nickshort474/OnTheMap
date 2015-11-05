@@ -14,10 +14,11 @@ extension MapAppClient {
     
     func loginToUdacity(email:String,password:String, completionHandler:(result: AnyObject!, error: NSError?) -> Void){
         
+        let method = "POST"
         
         let parameters = [
-            "url":Constants.udacityURL,
-            "method":"POST"
+            "url":"\(Constants.udacityBaseURL)\(Constants.session)",
+            "isUdacity":"true"
         ]
         
         let requestHeaderValues = [
@@ -31,18 +32,18 @@ extension MapAppClient {
         
         
         
-        repeatableTasks(parameters,requestHeaderValues: requestHeaderValues,requestBodyValues:requestBodyValues){
+        repeatableTasks(method,parameters: parameters,requestHeaderValues:requestHeaderValues,requestBodyValues:requestBodyValues){
             (result, error) in
             
             if let error = error{
                 
-                print("error, code: \(error)")
                 
+                completionHandler(result:result,error:error)
                 
             }else{
                 if let result = result{
                     
-                    completionHandler(result: result,error: error)
+                    completionHandler(result:result,error: error)
                 }
             }
         }
@@ -51,14 +52,16 @@ extension MapAppClient {
     }
     
     
-    func logoutSession(){
+    func logoutSession(completionHandler:(result: AnyObject!, error: NSError?) -> Void){
+        
+      
         
         let request = NSMutableURLRequest(URL:NSURL(string:"https://www.udacity.com/api/session")!)
         request.HTTPMethod = "DELETE"
         var xsrfCookie:NSHTTPCookie? = nil
         let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         
-        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie]!{
+        for cookie in sharedCookieStorage.cookies as [NSHTTPCookie]!{
             if cookie.name == "XSRF-TOKEN" {
                 xsrfCookie = cookie
             }
@@ -75,8 +78,9 @@ extension MapAppClient {
             if let error = error{
                 print(error)
             }else{
-                let newData = data?.subdataWithRange(NSMakeRange(5,data!.length - 5))
-                print(NSString(data: newData!, encoding:NSUTF8StringEncoding))
+                if let result = response{
+                    completionHandler(result:result,error:error)
+                }
             }
         }
         task.resume()
@@ -86,46 +90,23 @@ extension MapAppClient {
     }
     
     
-    func getPublicUserData(){
+    func getPublicUserData(completionHandler:(result: AnyObject!, error: NSError?) -> Void){
         
-        let url = "https://www.udacity.com/api/users"
-        let nsURL = NSURL(string: url)!
-        let request = NSMutableURLRequest(URL: nsURL)
-        request.HTTPMethod = "GET"
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request){
-            data,response, error in
-            if let error = error{
-                print(error)
-            }else{
-                let newData = data?.subdataWithRange(NSMakeRange(5,data!.length - 5))
-                print(NSString(data: newData!, encoding:NSUTF8StringEncoding))
-            }
-        }
-        task.resume()
-        
-    }
-    
-    
-    
-    func getStudentLocation(completionHandler:(result: AnyObject!, error: NSError?) -> Void){
-        
+        let method = "GET"
         
         let parameters = [
-            "url":Constants.parseURL,
-            "method":"GET"
+            "url":"\(Constants.udacityBaseURL)\(Constants.users)\(Constants.userID)",
+            "isUdacity":"true"
         ]
         
         let requestHeaderValues = [
-            "X-Parse-Application-Id":Constants.ApplicationID,
-            "X-Parse-REST-API-Key":Constants.APIKey
+            "Accept":"application/json",
+        
         ]
         
-        
-        repeatableTasks(parameters,requestHeaderValues: requestHeaderValues)
-            {
-                (result, error) in
+        repeatableTasks(method,parameters: parameters,requestHeaderValues: requestHeaderValues){
+        (result, error) in
+                
                 if let error = error{
                     print("error, code: \(error)")
                     
@@ -137,41 +118,83 @@ extension MapAppClient {
                 }
         }
         
-       
+        
+        
         
     }
     
-    func postStudentLocation(){
+    
+    
+    func getStudentLocation(completionHandler:(result: AnyObject!, error: NSError?) -> Void){
         
-        let url = "https://api.parse.com/1/classes/StudentLocation"
-        let nsURL = NSURL(string: url)!
-        let request = NSMutableURLRequest(URL:nsURL)
-        request.HTTPMethod = "POST"
-        request.addValue("\(Constants.ApplicationID)", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("\(Constants.APIKey)", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
+        let method = "GET"
         
+        let parameters = [
+            "url":"\(Constants.parseURL)?limit=100&order=-updatedAt",
+            "isUdacity":"false"
+        ]
         
-        // TODO: add studnt location data
-        
-        request.HTTPBody = "studentLocation".dataUsingEncoding(NSUTF8StringEncoding)
-        
-        // continue
-        
+        let requestHeaderValues = [
+            "X-Parse-Application-Id":Constants.ApplicationID,
+            "X-Parse-REST-API-Key":Constants.APIKey
+        ]
         
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request){
-            data, response, error in
-            if let error = error{
-                print(error)
-            }else{
-                print(NSString(data:data!, encoding:NSUTF8StringEncoding))
-            }
-            
+        repeatableTasks(method,parameters: parameters,requestHeaderValues: requestHeaderValues)
+            {
+                (result, error) in
+                if let error = error{
+                    //print("error, code: \(error)")
+                    completionHandler(result:result,error:error)
+                }else{
+                    if let result = result{
+                        
+                        completionHandler(result:result,error:error)
+                    }
+                }
         }
-        task.resume()
+        
+        
         
     }
+    
+    
+    
+    func postStudentLocation(completionHandler:(result: AnyObject!, error: NSError?) -> Void){
+        
+        let method = "POST"
+        
+        let parameters = [
+            "url":Constants.parseURL,
+            "isUdacity":"false"
+            
+        ]
+        
+        let requestHeaderValues = [
+            "X-Parse-Application-Id":Constants.ApplicationID,
+            "X-Parse-REST-API-Key":Constants.APIKey,
+            "Content-Type":"application/json",
+        ]
+        
+        let requestBodyValues = [
+            "bodyString":"{\"uniqueKey\":\"\(userData.uniqueKey)\",\"firstName\":\"\(userData.firstName)\",\"lastName\":\"\(userData.lastName)\",\"mapString\":\"\(userData.mapString)\",\"mediaURL\": \"\(userData.mediaURL)\",\"latitude\":\(userData.latitude),\"longitude\":\(userData.longitude)}".dataUsingEncoding(NSUTF8StringEncoding)!
+           
+        ]
+        
+        repeatableTasks(method,parameters: parameters, requestHeaderValues: requestHeaderValues,requestBodyValues: requestBodyValues){
+            (result,error) in
+            if let error = error{
+                completionHandler(result:result,error:error)
+            }else{
+                if let result = result{
+                    completionHandler(result:result,error:error)
+                    
+                }
+            }
+        }
+        
+       
+        
+        }
     
    }

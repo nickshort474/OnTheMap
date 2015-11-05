@@ -14,6 +14,7 @@ import MapKit
 class MapViewController:UIViewController,MKMapViewDelegate{
     
     @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var annotations = [MKPointAnnotation]()
     var logoutButton:UIBarButtonItem?
@@ -38,40 +39,41 @@ class MapViewController:UIViewController,MKMapViewDelegate{
         MapAppClient.sharedInstance().getStudentLocation(){
             (result,error) in
             
+            // check to see if getting result
             if let result = result{
-               
-                // parse JSON into results dictionary
-                let results = result["results"] as! [[String:AnyObject]]
-                
-                
-                // save in shared studentLocations Array
-                StudentLocations.createStudentArray(results)
-                
-                self.addDataToMap(results)
-                
-               /* for value in results{
+                // try to assign results to results
+                if let results = result["results"]{
+                    // check whether assignment successful
+                    if let results = results{
+                        StudentLocations.createStudentArray(results as! [[String:AnyObject]])
+                        self.addDataToMap(results as! [[String:AnyObject]])
+                    }else{
+                        let results = result["error"]
+                        if let results = results{
+                            dispatch_async(dispatch_get_main_queue(), {
+                                let alertController = UIAlertController()
+                                alertController.title = "Download Failed"
+                                alertController.message = "Failed to download student data:  \(results!)"
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                                
+                                let alertAction = UIAlertAction(title: "Finished", style: UIAlertActionStyle.Default){
+                                    action in
+                                    //self.logout()
+                                    self.activityIndicator.stopAnimating()
+                                    self.activityIndicator.hidden = true
+                                }
+                                alertController.addAction(alertAction)
+                            })
+                        }
+                    }
                     
-                    // assign needed data to locations dictionary to be used on map
-                    let lat = CLLocationDegrees(value["latitude"] as! Double)
-                    let long = CLLocationDegrees(value["longitude"] as! Double)
                     
-                    // The lat and long are used to create a CLLocationCoordinates2D instance.
-                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    
-                    let first = value["firstName"] as! String
-                    let last = value["lastName"] as! String
-                    let mediaURL = value["mediaURL"] as! String
-                    
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.title = "\(first) \(last)"
-                    annotation.subtitle = mediaURL
-                    
-                    self.annotations.append(annotation)
-                }*/
+                }
             }
-            //self.MapView.addAnnotations(self.annotations)
-        }
+            else{
+                // handle no connection?  - have already logged in so must have connection?
+            }
+        }// end of get student location
     }
     
     
@@ -79,17 +81,13 @@ class MapViewController:UIViewController,MKMapViewDelegate{
         
         // clear then reload buttons for when tab changes back from table view
         self.parentViewController!.navigationItem.rightBarButtonItems = []
-        
         self.parentViewController!.navigationItem.rightBarButtonItems = [refreshMapButton!,postMapButton!]
+        
     }
     
     
-    
-    
-    
-    
     func addDataToMap(results:[[String:AnyObject]]){
-        print("adding data to map")
+        
         for value in results{
             
             // assign needed data to locations dictionary to be used on map
@@ -110,19 +108,17 @@ class MapViewController:UIViewController,MKMapViewDelegate{
             
             self.annotations.append(annotation)
         }
+        
         self.MapView.addAnnotations(self.annotations)
     }
     
-   
-    
-    
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-            
+        
         let reuseId = "pin"
         
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-            
+        
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
@@ -131,16 +127,15 @@ class MapViewController:UIViewController,MKMapViewDelegate{
         }else{
             pinView!.annotation = annotation
         }
-            
+        
         return pinView
     }
-        
-        
-        // This delegate method is implemented to respond to taps. It opens the system browser
-        // to the URL specified in the annotationViews subtitle property.
+    
+    
+    
     
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-         
+        
         if control == annotationView.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
             app.openURL(NSURL(string: annotationView.annotation!.subtitle!!)!)
@@ -149,31 +144,68 @@ class MapViewController:UIViewController,MKMapViewDelegate{
     
     
     func logout(){
-        MapAppClient.sharedInstance().logoutSession()
-    }
-
-    
-    func refreshData(){
-        print("refreshing map")
-        MapAppClient.sharedInstance().getStudentLocation(){
+        MapAppClient.sharedInstance().logoutSession(){
             (result,error) in
-            if let result = result{
-                print("new results")
-                // parse JSON into results dictionary
-                let results = result["results"] as! [[String:AnyObject]]
-                
-                
-                // save new data in shared studentLocations Array
-                StudentLocations.createStudentArray(results)
-                
-                // recall addDataToMap function to reload data
-                self.addDataToMap(results)
-            }
             
+            dispatch_async(dispatch_get_main_queue(), {
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
+                
+            })
         }
     }
     
-       
+    
+    func refreshData(){
+        
+        self.parentViewController!.navigationItem.rightBarButtonItems = []
+        self.view.alpha = 0.5
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
+        MapAppClient.sharedInstance().getStudentLocation(){
+            (result,error) in
+            
+            if let result = result{
+                
+                // parse JSON into results dictionary
+                if let results = result["results"] {
+                    
+                    if let results = results{
+                        // save in shared studentLocations Array
+                        StudentLocations.createStudentArray(results as! [[String:AnyObject]])
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            self.view.alpha = 1
+                            self.activityIndicator.hidden = true
+                            self.activityIndicator.stopAnimating()
+                            self.parentViewController!.navigationItem.rightBarButtonItems = [self.refreshMapButton!,self.postMapButton!]
+                        })
+                        
+                    }else{
+                        dispatch_async(dispatch_get_main_queue(), {
+                            let alertController = UIAlertController()
+                            alertController.title = "Download Failed"
+                            alertController.message = "Failed to download student data"
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                            
+                            let alertAction = UIAlertAction(title: "Finished", style: UIAlertActionStyle.Default){
+                                action in
+                                
+                                self.view.alpha = 1
+                                self.activityIndicator.hidden = true
+                                self.activityIndicator.stopAnimating()
+                                self.parentViewController!.navigationItem.rightBarButtonItems = [self.refreshMapButton!,self.postMapButton!]
+                            }
+                            alertController.addAction(alertAction)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    
     
     func postNewData(){
         let informationViewController = self.storyboard!.instantiateViewControllerWithIdentifier("InformationViewController")
@@ -181,14 +213,6 @@ class MapViewController:UIViewController,MKMapViewDelegate{
         self.presentViewController(informationViewController, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
 }

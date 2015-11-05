@@ -13,33 +13,15 @@ class MapAppClient:NSObject {
     
     let session = NSURLSession.sharedSession()
     
-    
-    
-    var studentLocations:[StudentLocations] = [StudentLocations]()
-    
-    
-    func repeatableTasks(parameters: [String : AnyObject],requestHeaderValues: [String : AnyObject],requestBodyValues: [String : NSData]?=nil,completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask  {
         
-        // TODO: send url parametres to escaped parameters
-        
-        // let escapedParameters = MapAppClient.escapedParameters()
-        
-        // get other parameters to use
-        var mutableParameters = [String:AnyObject]()
-        mutableParameters["url"] = parameters["url"]
-        
-        
-        // mutableParameters["other"] = parameters["other"]
+    func repeatableTasks(method:String,parameters: [String : AnyObject],requestHeaderValues: [String : AnyObject],requestBodyValues: [String : AnyObject]?=nil,completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask  {
         
         let urlString = parameters["url"] as! String
-        
         
         let URL = NSURL(string: urlString)
         let request = NSMutableURLRequest(URL: URL!)
         
-        request.HTTPMethod = parameters["method"] as! String
-        
-        
+        request.HTTPMethod = method
         
         for (key,value) in requestHeaderValues{
             request.addValue(value as! String, forHTTPHeaderField: key)
@@ -47,24 +29,24 @@ class MapAppClient:NSObject {
         
         if let requestBodyValues = requestBodyValues{
             for (_,value) in requestBodyValues{
-                request.HTTPBody = value
+                request.HTTPBody = value as? NSData
+                
             }
+            
         }
-        
-        
         
         let task = session.dataTaskWithRequest(request){
             data, response, downloadError in
             
             if let error = downloadError{
                 // handle error
-                print("error: \(error)")
+                
+                completionHandler(result: response, error: error)
+                
             }else{
                 // process JSON
                 
-                // TODO: deal with first 5 characters of udacity response but not parse
-                
-                if(parameters["url"] as! String == "https://www.udacity.com/api/session"){
+                if(parameters["isUdacity"] as! String == "true"){
                     
                     let newData = data?.subdataWithRange(NSMakeRange(5, data!.length - 5))
                     MapAppClient.parseJSON(newData!){
@@ -79,7 +61,7 @@ class MapAppClient:NSObject {
                         completionHandler(result:result,error:error)
                     }
                 }
-                //print()
+                
                 
                 
             }
