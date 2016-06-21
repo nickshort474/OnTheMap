@@ -1,0 +1,14 @@
+version: "Apple Swift version 2.2 (swiftlang-703.0.18.1 clang-703.0.29)"
+options: "77376bf25272f7c360724ae87d3606fc"
+build_time: [519843202, 483063000]
+inputs:
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/LoginViewController.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/MapAppConvenience.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/MapAppConstants.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/StudentLocations.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/MapAppClient.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/AppDelegate.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/InformationViewController.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/TableViewController.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/MapViewController.swift": [519843187, 0]
+  "/Users/nickshort/Desktop/iOS_apps/OnTheMap/OnTheMap/OnTheMapApp/CheckURLViewController.swift": [519843187, 0]

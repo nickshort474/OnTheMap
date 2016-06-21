@@ -39,8 +39,8 @@ class TableViewController:UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
-        refreshTableButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshTableData")
-        postTableButton = UIBarButtonItem(image: UIImage(named:"Pin"), style: .Plain, target: self, action: "postNewData")
+        refreshTableButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(TableViewController.refreshTableData))
+        postTableButton = UIBarButtonItem(image: UIImage(named:"Pin"), style: .Plain, target: self, action: #selector(TableViewController.postNewData))
         
     }
     

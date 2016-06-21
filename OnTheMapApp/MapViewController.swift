@@ -28,9 +28,9 @@ class MapViewController:UIViewController,MKMapViewDelegate{
         // Do any additional setup after loading the view, typically from a nib.
         MapView.delegate = self
         
-        logoutButton = UIBarButtonItem(title:"Logout", style: .Plain, target: self, action: "logout")
-        refreshMapButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshData")
-        postMapButton = UIBarButtonItem(image: UIImage(named:"Pin"), style: .Plain, target: self, action: "postNewData")
+        logoutButton = UIBarButtonItem(title:"Logout", style: .Plain, target: self, action: #selector(MapViewController.logout))
+        refreshMapButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(MapViewController.refreshData))
+        postMapButton = UIBarButtonItem(image: UIImage(named:"Pin"), style: .Plain, target: self, action: #selector(MapViewController.postNewData))
         
         self.parentViewController!.navigationItem.leftBarButtonItem = logoutButton
         self.parentViewController!.navigationItem.rightBarButtonItems = [refreshMapButton!,postMapButton!]
